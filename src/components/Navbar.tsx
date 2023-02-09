@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import type { FC } from 'react';
 import { ArrowBackIcon } from '@chakra-ui/icons';
 import { Heading, HStack } from '@chakra-ui/react';
 import { useNavigate } from '@tanstack/react-router';
