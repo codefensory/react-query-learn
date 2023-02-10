@@ -1,25 +1,39 @@
-# New Project
+# React-Learn
+This is a project made entirely for learning. Everything you are going to add in this repository is done with the purpose of learning and finding a solid architecture using React-Query and Jotai.
 
-> ✨ Bootstrapped with Create Snowpack App (CSA).
+## Technologies
+For the development of this project we are using common and uncommon packages, this to keep learning. The most important packages are the following:
 
-## Available Scripts
+- React 18
+- Snowpack (compiler)
+- Chakra-ui
+- Tanstack Router (Beta)
+- Tanstack Query (React-Query v4)
+- Jotai (State management)
+- pnpm
 
-### npm start
+## Development
+To run this project you need to use pnpm (Not mandatory but it is what is used).
 
-Runs the app in the development mode.
-Open http://localhost:8080 to view it in the browser.
+First we install the packages with the command:
+```
+pnpm i
+```
 
-The page will reload if you make edits.
-You will also see any lint errors in the console.
+Then to start this project in development use the command:
+```
+pnpm start
+```
 
-### npm run build
+And to compile:
+```
+pnpm build
+```
 
-Builds a static copy of your site to the `build/` folder.
-Your app is ready to be deployed!
+## Deploy
+This project integrates express to serve the compiled application. To run the server you first need to do a build, and then run the command:
+```
+pnpm serve
+```
 
-**For the best production performance:** Add a build bundler plugin like "@snowpack/plugin-webpack" to your `snowpack.config.mjs` config file.
-
-### npm test
-
-Launches the application test runner.
-Run with the `--watch` flag (`npm test -- --watch`) to run in interactive watch mode.
+To make the deployment of this project we are using [DETA](https://www.deta.sh/) so it is for this reason that in the index.js we make a `module.exports = app`, since deta needs this for the deployment to work.
