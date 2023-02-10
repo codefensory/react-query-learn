@@ -1,13 +1,12 @@
 import { RootRoute, Route, ReactRouter } from '@tanstack/react-router';
 import { MainLayout } from './layouts';
-import { basicPageRoute, homePageRoute, paginationPageRoute } from './pages';
-import { mutationsPageRoute } from './pages/Mutations';
+import { queriesPageRoute, homePageRoute, paginationPageRoute, mutationsPageRoute } from './pages';
 
 export const rootRoute = new RootRoute({ component: MainLayout });
 
 export const routeTree = rootRoute.addChildren([
   homePageRoute,
-  basicPageRoute,
+  queriesPageRoute,
   paginationPageRoute,
   mutationsPageRoute,
 ]);
