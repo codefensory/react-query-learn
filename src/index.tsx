@@ -15,7 +15,11 @@ window.React = React;
 
 axios.defaults.baseURL = API_URL;
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {},
+  },
+});
 
 ReactDOM.render(
   <React.StrictMode>

@@ -12,7 +12,7 @@ const HomePage = () => {
         Home page
       </Heading>
       <Text>
-        Here we are going to add a list of demo actions using{' '}
+        Here we are going to add a list of demo actions with{' '}
         <Code>react-query</Code>
       </Text>
       <HStack mt="4" spacing="6">

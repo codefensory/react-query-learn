@@ -1,5 +1,10 @@
 import { getRandomColors } from '@app/api';
-import { Color, ColorList, ColorListSkeleton } from '@app/components';
+import {
+  Color,
+  ColorList,
+  ColorListSkeleton,
+  ErrorFallback,
+} from '@app/components';
 import { rootRoute } from '@app/router';
 import {
   Box,
@@ -10,9 +15,10 @@ import {
   useBoolean,
   VStack,
 } from '@chakra-ui/react';
-import { useQuery } from '@tanstack/react-query';
+import { QueryErrorResetBoundary, useQuery } from '@tanstack/react-query';
 import { Route } from '@tanstack/react-router';
 import { FC, Suspense, useEffect, useState } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 
 const BasicWithoutReactQueryPage: FC = () => {
   const [colors, setColors] = useState([]);
@@ -49,16 +55,18 @@ const BasicWithoutReactQueryPage: FC = () => {
   );
 };
 
-const BasicReactQueryPage: FC = () => {
-  const {
-    data: colors = [],
-    isLoading,
-    isError,
-    error,
-  } = useQuery<Color[], any>({
+const useRandonColor = () => {
+  const query = useQuery<Color[], any>({
     queryKey: ['basic', 'randomColor'],
     queryFn: getRandomColors,
+    staleTime: 10000,
   });
+
+  return query;
+};
+
+const BasicReactQueryPage: FC = () => {
+  const { data: colors = [], isLoading, isError, error } = useRandonColor();
 
   if (isError) {
     return <Text color="red">{error.message}</Text>;
@@ -110,9 +118,15 @@ const BasicPage: FC = () => {
       <VStack mt="4" spacing="8">
         <BasicWithoutReactQueryPage />
         <BasicReactQueryPage />
-        <Suspense fallback={<BasicSkeleton />}>
-          <BasicReactQueryPageWithoutLoading />
-        </Suspense>
+        <QueryErrorResetBoundary>
+          {({ reset }) => (
+            <ErrorBoundary onReset={reset} FallbackComponent={ErrorFallback}>
+              <Suspense fallback={<BasicSkeleton />}>
+                <BasicReactQueryPageWithoutLoading />
+              </Suspense>
+            </ErrorBoundary>
+          )}
+        </QueryErrorResetBoundary>
       </VStack>
     </>
   );
