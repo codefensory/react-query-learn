@@ -15,8 +15,8 @@ permissions:
 jobs:
   build:
     environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      name: deta-micro
+      url: https://react-query-learn.deta.dev
     runs-on: ubuntu-latest
 
     strategy:
