@@ -56,7 +56,7 @@ const PaginationWithReactQuery: FC<{ page: string | number }> = ({ page }) => {
   return (
     <Box w="full">
       <Heading as="h3" size="md" mb="3">
-        Without react-query
+        With react-query
       </Heading>
       {(isError && error) ?? <Text color="red">{error.message}</Text>}
       {isLoading ? <ColorListSkeleton /> : <ColorList colors={colors} />}
